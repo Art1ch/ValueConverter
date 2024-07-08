@@ -7,9 +7,9 @@ root.configure(width=400, height=400, background="gray")
 
 
 def convert() -> None:
-    input_value = float(input_value_entry.get())
-    first_unit = first_unit_string_var.get()
-    second_unit = second_unit_string_var.get()
+    input_value: float = float(input_value_entry.get())
+    first_unit: str = first_unit_string_var.get()
+    second_unit: str = second_unit_string_var.get()
 
     if first_unit == second_unit:
         result_entry.delete(0, END)
@@ -17,7 +17,7 @@ def convert() -> None:
         return None
 
     try:
-        result = input_value * conversion_rates[(first_unit, second_unit)]
+        result: float = input_value * conversion_rates[(first_unit, second_unit)]
         result_entry.delete(0, END)
         result_entry.insert(0, str(result))
     except KeyError as ex:
@@ -26,13 +26,13 @@ def convert() -> None:
         result_entry.insert(0, "You can't match these units")
 
 
-all_units = \
+all_units: tuple = \
     ("Miles", "Kilometers",
      "Pounds", "Kilograms",
      "Inches", "Centimeters",
      )
 
-conversion_rates = \
+conversion_rates: dict = \
     {
         ("Miles", "Kilometers"): 1.60934,
         ("Kilometers", "Miles"): 0.621371,
